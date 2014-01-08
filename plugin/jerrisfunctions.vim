@@ -85,3 +85,19 @@ function! JerriCalendarAction (day, month, year, week, dir)
     wincmd p
     exec "normal a".l:tag."\<esc>"
 endfunction
+
+" The following is a function to diff the current file with the serverside one
+" using difftolive.sh
+"
+" Any parameters to the difftolive.sh can be given in a string.
+function! DiffFile (arguments) abort
+    write
+    let l:currentPath = getcwd()
+    lcd %:p:h
+    let l:dcommand = '!/home/gerhard/bin/difftolive.sh "'.expand('%').'" -i '.a:arguments
+    "echo 'COMMAND: '.l:dcommand
+    exec l:dcommand
+    exec 'lcd '.l:currentPath
+endfunction
+
+command! -nargs=* DI call DiffFile(<q-args>)
