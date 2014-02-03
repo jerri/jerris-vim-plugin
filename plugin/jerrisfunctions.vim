@@ -54,13 +54,15 @@ endfunction
 " gnupg.vim-Plugin to encrypt the files.
 " The following implements a simple password safe for any file named *.pws.gpg
 " folding support for == headlines ==
-augroup jerris_pws_extension
 function! HeadlineDelimiterExpression(lnum)
     if a:lnum == 1
         return ">1"
     endif
     return (getline(a:lnum)=~"^\\s*==.*==\\s*$") ? ">1" : "="
 endfunction
+
+augroup jerris_pws_extension
+autocmd!
 autocmd BufReadPost,FileReadPost   *.pws set foldexpr=HeadlineDelimiterExpression(v:lnum)
 autocmd BufReadPost,FileReadPost   *.pws set foldlevel=0
 autocmd BufReadPost,FileReadPost   *.pws set foldcolumn=0
