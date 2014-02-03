@@ -61,16 +61,16 @@ function! HeadlineDelimiterExpression(lnum)
     endif
     return (getline(a:lnum)=~"^\\s*==.*==\\s*$") ? ">1" : "="
 endfunction
-autocmd BufReadPost,FileReadPost   *.pws.gpg set foldexpr=HeadlineDelimiterExpression(v:lnum)
-autocmd BufReadPost,FileReadPost   *.pws.gpg set foldlevel=0
-autocmd BufReadPost,FileReadPost   *.pws.gpg set foldcolumn=0
-autocmd BufReadPost,FileReadPost   *.pws.gpg set foldmethod=expr
-autocmd BufReadPost,FileReadPost   *.pws.gpg set foldtext=getline(v:foldstart)
-autocmd BufReadPost,FileReadPost   *.pws.gpg nnoremap <silent><space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<CR>
-autocmd BufReadPost,FileReadPost   *.pws.gpg nnoremap <silent>q :q<CR>
-autocmd BufReadPost,FileReadPost   *.pws.gpg highlight Folded ctermbg=red ctermfg=black
-autocmd BufReadPost,FileReadPost   *.pws.gpg set updatetime=300000
-autocmd CursorHold                 *.pws.gpg quit
+autocmd BufReadPost,FileReadPost   *.pws set foldexpr=HeadlineDelimiterExpression(v:lnum)
+autocmd BufReadPost,FileReadPost   *.pws set foldlevel=0
+autocmd BufReadPost,FileReadPost   *.pws set foldcolumn=0
+autocmd BufReadPost,FileReadPost   *.pws set foldmethod=expr
+autocmd BufReadPost,FileReadPost   *.pws set foldtext=getline(v:foldstart)
+autocmd BufReadPost,FileReadPost   *.pws nnoremap <silent><space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<CR>
+autocmd BufReadPost,FileReadPost   *.pws nnoremap <silent>q :q<CR>
+autocmd BufReadPost,FileReadPost   *.pws highlight Folded ctermbg=red ctermfg=black
+autocmd BufReadPost,FileReadPost   *.pws set updatetime=300000
+autocmd CursorHold                 *.pws quit
 augroup END
 
 " The following is a function to be used together with calendar.vim. Add the
