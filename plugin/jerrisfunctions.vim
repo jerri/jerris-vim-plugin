@@ -103,3 +103,11 @@ function! DiffFile (arguments) abort
 endfunction
 
 command! -nargs=* DI call DiffFile(<q-args>)
+
+" Function to create a new tmux-Window with the connection to a server via ssh
+function! SSHToServer (arguments)
+    silent exec '!~/bin/s '.a:arguments
+    redraw!                                                                                              
+endfunction
+
+command! -nargs=* S call SSHToServer(<q-args>)
