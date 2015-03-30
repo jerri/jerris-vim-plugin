@@ -95,8 +95,9 @@ endfunction
 function! DiffFile (arguments) abort
     write
     let l:currentPath = getcwd()
+    let l:line = line(".")
     lcd %:p:h
-    let l:dcommand = '!/home/gerhard/bin/difftolive.sh "'.expand('%').'" -i '.a:arguments
+    let l:dcommand = '!/home/gerhard/bin/difftolive.sh "'.expand('%').'" --line '.l:line.' -i '.a:arguments
     "echo 'COMMAND: '.l:dcommand
     exec l:dcommand
     exec 'lcd '.l:currentPath
