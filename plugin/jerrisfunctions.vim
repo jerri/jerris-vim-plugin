@@ -93,7 +93,9 @@ endfunction
 "
 " Any parameters to the difftolive.sh can be given in a string.
 function! DiffFile (arguments) abort
-    write
+    if ! &readonly
+        write
+    endif
     let l:currentPath = getcwd()
     let l:line = line(".")
     lcd %:p:h
