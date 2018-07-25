@@ -49,32 +49,6 @@ function! AutomaticPasswordGenerate()
   exec "normal a".substitute(password, "\n", '', '')."\<esc>"
 endfunction
 
-" here are some settings to work with simple password-safe-files. :) shamelessly
-" stolen from des3.vim (from Noah Spurrier <noah@noah.org>) Uses the
-" gnupg.vim-Plugin to encrypt the files.
-" The following implements a simple password safe for any file named *.pws.gpg
-" folding support for == headlines ==
-function! HeadlineDelimiterExpression(lnum)
-    if a:lnum == 1
-        return ">1"
-    endif
-    return (getline(a:lnum)=~"^\\s*==.*==\\s*$") ? ">1" : "="
-endfunction
-
-augroup jerris_pws_extension
-autocmd!
-autocmd BufReadPost,FileReadPost   *.pws set foldexpr=HeadlineDelimiterExpression(v:lnum)
-autocmd BufReadPost,FileReadPost   *.pws set foldlevel=0
-autocmd BufReadPost,FileReadPost   *.pws set foldcolumn=0
-autocmd BufReadPost,FileReadPost   *.pws set foldmethod=expr
-autocmd BufReadPost,FileReadPost   *.pws set foldtext=getline(v:foldstart)
-autocmd BufReadPost,FileReadPost   *.pws nnoremap <silent><space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<CR>
-autocmd BufReadPost,FileReadPost   *.pws nnoremap <silent>q :q<CR>
-autocmd BufReadPost,FileReadPost   *.pws highlight Folded ctermbg=red ctermfg=black
-autocmd BufReadPost,FileReadPost   *.pws set updatetime=300000
-autocmd CursorHold                 *.pws quit
-augroup END
-
 " The following is a function to be used together with calendar.vim. Add the
 " following to line to call this function, if the user presses return on a
 " date.
