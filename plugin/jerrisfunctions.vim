@@ -58,8 +58,7 @@ function! JerriCalendarAction (day, month, year, week, dir)
     let l:day = a:day<10 ? '0'.a:day : a:day
     let l:month = a:month<10 ? '0'.a:month : a:month
     let l:tag = a:year.'-'.l:month.'-'.l:day
-    wincmd p
-    exec "normal a".l:tag."\<esc>"
+    exec "normal qa".l:tag."\<esc>"
 endfunction
 
 " The following is a function to diff the current file with the serverside one
