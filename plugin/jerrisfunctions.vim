@@ -72,7 +72,7 @@ function! DiffFile (arguments) abort
     let l:currentPath = getcwd()
     let l:line = line(".")
     lcd %:p:h
-    let l:dcommand = '!/home/gerhard/bin/difftolive.sh "'.expand('%').'" --line '.l:line.' -i '.a:arguments
+    let l:dcommand = '!~/bin/difftolive.sh "'.expand('%').'" --line '.l:line.' -i '.a:arguments
     "echo 'COMMAND: '.l:dcommand
     exec l:dcommand
     exec 'lcd '.l:currentPath
@@ -83,7 +83,7 @@ command! -nargs=* DI call DiffFile(<q-args>)
 " Function to create a new tmux-Window with the connection to a server via ssh
 function! SSHToServer (arguments)
     silent exec '!~/bin/s '.a:arguments
-    redraw!                                                                                              
+    redraw!
 endfunction
 
 command! -nargs=* S call SSHToServer(<q-args>)
