@@ -45,7 +45,7 @@ map <leader>apg :call AutomaticPasswordGenerate()<CR>
 " the following  function uses apg (automatic password generator) to insert an
 " new password at the current cursor position.
 function! AutomaticPasswordGenerate()
-  let password = system("apg -M NCL -m 12 -x 12 -n 1")
+  let password = system("apg -c /dev/urandom -E \"'\\\"\" -M SNCL -m 12 -x 12 -n 1")
   exec "normal a".substitute(password, "\n", '', '')."\<esc>"
 endfunction
 
