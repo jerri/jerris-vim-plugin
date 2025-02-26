@@ -45,7 +45,7 @@ map <leader>apg :call AutomaticPasswordGenerate()<CR>
 " the following  function uses apg (automatic password generator) to insert an
 " new password at the current cursor position.
 function! AutomaticPasswordGenerate()
-  let password = system("pwgen --symbols --numerals --capitalize 12 1")
+  let password = system("pwgen --symbols --numerals --capitalize 16 1")
   exec "normal a".substitute(password, "\n", '', '')."\<esc>"
 endfunction
 
